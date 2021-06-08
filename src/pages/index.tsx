@@ -2,6 +2,7 @@ import { Button, Box } from '@chakra-ui/react';
 import { useMemo } from 'react';
 import { useInfiniteQuery } from 'react-query';
 
+import { AxiosResponse } from 'axios';
 import { Header } from '../components/Header';
 import { CardList } from '../components/CardList';
 import { api } from '../services/api';
@@ -35,6 +36,9 @@ const fetchImages = async ({ pageParam = null }: fetchImagesParams) => {
 };
 
 export default function Home(): JSX.Element {
+  const fetchImages = ({ pageParam = 0 }): any =>
+    api(`/images?after=${pageParam}`).then(({ data }) => data);
+
   const {
     data,
     isLoading,
