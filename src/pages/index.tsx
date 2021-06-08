@@ -26,18 +26,16 @@ type AxiosResponse = {
   after: string | null;
 };
 
-const fetchImages = async ({ pageParam = null }: fetchImagesParams) => {
-  const data = await api.get<AxiosResponse>(`images`, {
-    params: {
-      after: pageParam,
-    },
-  });
-  return data;
-};
-
 export default function Home(): JSX.Element {
-  const fetchImages = ({ pageParam = 0 }): any =>
-    api(`/images?after=${pageParam}`).then(({ data }) => data);
+  const fetchImages = async ({ pageParam = null }: fetchImagesParams) => {
+    const data = await api.get<AxiosResponse>(`images`, {
+      params: {
+        after: pageParam,
+      },
+    });
+
+    return data;
+  };
 
   const {
     data,
