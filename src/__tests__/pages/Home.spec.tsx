@@ -70,7 +70,7 @@ describe('Home page', () => {
   });
 
   it('should be able to render loading', async () => {
-    apiMock.onGet('/api/images').reply(200);
+    apiMock.onGet('/api/images').reply(500);
 
     render(<Home />, { wrapper });
 
